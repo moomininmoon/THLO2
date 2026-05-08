@@ -196,7 +196,16 @@ input, textarea, select { font: inherit; color: inherit; }
     justify-content: center;
 }
 .video-container { position: absolute; inset: 0; }
-#main-video { width: 100%; height: 100%; object-fit: cover; }
+#main-video { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+    transition: opacity var(--t-base); /* 부드럽게 까맣게 변하는 효과 */
+}
+/* 정지되었을 때 영상을 투명하게 만들어 뒤의 검정 배경이 보이게 하는 클래스 */
+#main-video.is-blacked-out {
+    opacity: 0; 
+}
 .hero-overlay {
     position: absolute; inset: 0;
     background: linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.45) 100%);
