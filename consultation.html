@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>상담 문의 | 법률사무소 탄하</title>
+    <meta name="description" content="법률사무소 탄하에 상담을 신청하세요. 사건 내용을 알려주시면 신속히 회신드립니다.">
+
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="consultation">
+
+    <header id="main-header" class="solid">
+        <nav class="navbar">
+            <a href="index.html" class="logo">TANHA</a>
+            <ul class="nav-links">
+                <li><a href="professionals.html">Professionals</a></li>
+                <li><a href="consultation.html" class="is-active">Consultation</a></li>
+                <li><a href="cases.html">Cases</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li id="admin-menu" hidden><a href="#" data-action="open-consults">상담 조회</a></li>
+                <li id="auth-menu"><a href="#" data-action="open-login">Login</a></li>
+            </ul>
+            <button class="nav-toggle" aria-label="메뉴 열기">
+                <span></span><span></span>
+            </button>
+        </nav>
+    </header>
+
+    <main class="page-body">
+        <div class="container">
+            <header class="page-header">
+                <span class="eyebrow">Consultation</span>
+                <h1>상담 문의</h1>
+                <p class="section-desc">사건 내용을 알려주시면 신속히 회신드립니다.</p>
+            </header>
+
+            <form id="consultation-form" class="form-card" novalidate>
+                <div class="form-grid">
+                    <div class="field">
+                        <label for="user-name">성함</label>
+                        <input type="text" id="user-name" required autocomplete="name">
+                    </div>
+                    <div class="field">
+                        <label for="user-phone">연락처</label>
+                        <input type="tel" id="user-phone" required autocomplete="tel">
+                    </div>
+                    <div class="field">
+                        <label for="user-email">이메일</label>
+                        <input type="email" id="user-email" required autocomplete="email">
+                    </div>
+                    <div class="field">
+                        <label for="consult-type">상담 분야</label>
+                        <select id="consult-type" required>
+                            <option value="민사">민사 사건</option>
+                            <option value="형사">형사 사건</option>
+                            <option value="가사/상속">가사 / 상속</option>
+                            <option value="기타">기타</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="field field-full">
+                    <label for="user-message">상담 내용</label>
+                    <textarea id="user-message" required placeholder="사건 경위와 현재 상황을 가능한 한 상세히 적어주세요."></textarea>
+                </div>
+
+                <div class="privacy-wrap">
+                    <input type="checkbox" id="privacy-check" required>
+                    <label for="privacy-check">
+                        <span class="check-box"></span>
+                        개인정보 수집 및 이용에 동의합니다.
+                    </label>
+                </div>
+
+                <button type="submit" class="btn btn-primary">상담 접수</button>
+
+                <p class="form-aside">
+                    이미 상담을 신청하셨나요?
+                    <a href="#" data-action="open-mylookup">내 상담 조회 →</a>
+                </p>
+            </form>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <div class="footer-logo">TANHA</div>
+            <p>&copy; 2024 TANHA LAW OFFICE. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- 공통 모달 -->
+    <div id="login-modal" class="modal" aria-hidden="true">
+        <div class="modal-backdrop" data-action="close-modal" data-target="login-modal"></div>
+        <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="login-title">
+            <button class="modal-close" data-action="close-modal" data-target="login-modal" aria-label="닫기">×</button>
+            <h3 id="login-title" class="modal-title">관리자 로그인</h3>
+            <form id="auth-form" class="modal-form" novalidate>
+                <div class="field">
+                    <label for="auth-email">이메일</label>
+                    <input type="email" id="auth-email" required>
+                </div>
+                <div class="field">
+                    <label for="auth-password">비밀번호</label>
+                    <input type="password" id="auth-password" required>
+                </div>
+                <button type="submit" class="btn btn-primary">로그인</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="consults-modal" class="modal" aria-hidden="true">
+        <div class="modal-backdrop" data-action="close-modal" data-target="consults-modal"></div>
+        <div class="modal-content modal-xl" role="dialog" aria-modal="true" aria-labelledby="consults-title">
+            <button class="modal-close" data-action="close-modal" data-target="consults-modal" aria-label="닫기">×</button>
+            <header class="modal-header">
+                <h3 id="consults-title" class="modal-title">접수된 상담 내역</h3>
+                <p class="modal-subtitle"><span id="consults-count">0</span>건</p>
+            </header>
+            <div id="consults-list" class="consults-list" aria-live="polite">
+                <div class="consults-empty">불러오는 중입니다.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 접수 완료 모달 -->
+    <div id="receipt-modal" class="modal" aria-hidden="true">
+        <div class="modal-backdrop" data-action="close-modal" data-target="receipt-modal"></div>
+        <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="receipt-title">
+            <button class="modal-close" data-action="close-modal" data-target="receipt-modal" aria-label="닫기">×</button>
+            <h3 id="receipt-title" class="modal-title">상담이 접수되었습니다</h3>
+            <p class="receipt-desc">빠른 시일 내에 회신드리겠습니다.<br>아래 접수번호를 보관해주세요.</p>
+            <div class="receipt-box">
+                <span class="receipt-label">접수번호</span>
+                <strong id="receipt-number" class="receipt-number">—</strong>
+            </div>
+            <p class="receipt-help">
+                이름과 연락처로 언제든 상담 진행 상황을 조회하실 수 있습니다.
+            </p>
+            <button type="button" class="btn btn-primary" data-action="close-modal" data-target="receipt-modal">확인</button>
+        </div>
+    </div>
+
+    <!-- 내 상담 조회 모달 -->
+    <div id="mylookup-modal" class="modal" aria-hidden="true">
+        <div class="modal-backdrop" data-action="close-modal" data-target="mylookup-modal"></div>
+        <div class="modal-content modal-lg" role="dialog" aria-modal="true" aria-labelledby="mylookup-title">
+            <button class="modal-close" data-action="close-modal" data-target="mylookup-modal" aria-label="닫기">×</button>
+            <h3 id="mylookup-title" class="modal-title">내 상담 내역 조회</h3>
+            <p class="receipt-desc">신청 시 입력하신 이름과 연락처를 입력해주세요.</p>
+
+            <form id="mylookup-form" class="modal-form" novalidate>
+                <div class="field">
+                    <label for="mylookup-name">성함</label>
+                    <input type="text" id="mylookup-name" required>
+                </div>
+                <div class="field">
+                    <label for="mylookup-phone">연락처</label>
+                    <input type="tel" id="mylookup-phone" required placeholder="신청 시 입력하신 번호 그대로">
+                </div>
+                <button type="submit" class="btn btn-primary">조회</button>
+            </form>
+
+            <div id="mylookup-result" class="mylookup-result" aria-live="polite"></div>
+        </div>
+    </div>
+
+    <script type="module" src="script.js"></script>
+</body>
+</html>

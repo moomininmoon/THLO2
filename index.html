@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>법률사무소 탄하 | 대표변호사 방소운</title>
+    <meta name="description" content="법률사무소 탄하 - 대표변호사 방소운. 의뢰인을 위한 최적의 법률 솔루션을 제공합니다.">
+
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="home">
+
+    <header id="main-header">
+        <nav class="navbar">
+            <a href="index.html" class="logo">TANHA</a>
+            <ul class="nav-links">
+                <li><a href="professionals.html">Professionals</a></li>
+                <li><a href="consultation.html">Consultation</a></li>
+                <li><a href="cases.html">Cases</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li id="admin-menu" hidden><a href="#" data-action="open-consults">상담 조회</a></li>
+                <li id="auth-menu"><a href="#" data-action="open-login">Login</a></li>
+            </ul>
+            <button class="nav-toggle" aria-label="메뉴 열기">
+                <span></span><span></span>
+            </button>
+        </nav>
+    </header>
+
+    <section class="hero" id="top">
+        <div class="video-container">
+            <video autoplay muted loop playsinline id="main-video">
+                <source src="b.mp4" type="video/mp4" media="(min-width: 769px)">
+                <source src="a.mp4" type="video/mp4">
+            </video>
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="hero-text">
+            <h1>법률사무소 탄하</h1>
+            <p class="hero-sub">TANHA LAW OFFICE</p>
+        </div>
+    </section>
+
+    <section class="home-intro">
+        <div class="container">
+            <header class="section-header">
+                <span class="eyebrow">Welcome</span>
+                <h2 class="section-title">의뢰인을 위한 최적의 법률 솔루션</h2>
+                <p class="section-desc">아래에서 원하시는 항목을 선택해주세요. 각 페이지에서 자세한 내용을 확인하실 수 있습니다.</p>
+            </header>
+
+            <div class="home-intro-grid">
+                <a href="professionals.html" class="home-intro-card">
+                    <span class="eyebrow">Professionals</span>
+                    <h3>대표변호사</h3>
+                    <p>대표변호사 방소운의 학력 및 다양한 분야의 경력을 확인하실 수 있습니다.</p>
+                    <span class="arrow">자세히 보기 <span aria-hidden="true">→</span></span>
+                </a>
+
+                <a href="consultation.html" class="home-intro-card">
+                    <span class="eyebrow">Consultation</span>
+                    <h3>상담 문의</h3>
+                    <p>사건 내용을 알려주시면 신속히 회신드립니다. 접수번호로 진행 상황을 조회하실 수도 있습니다.</p>
+                    <span class="arrow">상담 신청하기 <span aria-hidden="true">→</span></span>
+                </a>
+
+                <a href="cases.html" class="home-intro-card">
+                    <span class="eyebrow">Cases</span>
+                    <h3>성공 사례</h3>
+                    <p>법률사무소 탄하가 함께해 온 의뢰인분들의 사례를 사진과 함께 자세히 살펴보세요.</p>
+                    <span class="arrow">사례 보기 <span aria-hidden="true">→</span></span>
+                </a>
+
+                <a href="contact.html" class="home-intro-card">
+                    <span class="eyebrow">Contact</span>
+                    <h3>찾아오시는 길</h3>
+                    <p>주소, 전화번호, 업무시간 안내. 온누리법조타워 지하 주차장을 무료로 이용하실 수 있습니다.</p>
+                    <span class="arrow">위치 안내 <span aria-hidden="true">→</span></span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <div class="footer-logo">TANHA</div>
+            <p>&copy; 2024 TANHA LAW OFFICE. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- 공통 모달: 로그인 -->
+    <div id="login-modal" class="modal" aria-hidden="true">
+        <div class="modal-backdrop" data-action="close-modal" data-target="login-modal"></div>
+        <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="login-title">
+            <button class="modal-close" data-action="close-modal" data-target="login-modal" aria-label="닫기">×</button>
+            <h3 id="login-title" class="modal-title">관리자 로그인</h3>
+            <form id="auth-form" class="modal-form" novalidate>
+                <div class="field">
+                    <label for="auth-email">이메일</label>
+                    <input type="email" id="auth-email" required>
+                </div>
+                <div class="field">
+                    <label for="auth-password">비밀번호</label>
+                    <input type="password" id="auth-password" required>
+                </div>
+                <button type="submit" class="btn btn-primary">로그인</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- 공통 모달: 관리자용 상담 조회 -->
+    <div id="consults-modal" class="modal" aria-hidden="true">
+        <div class="modal-backdrop" data-action="close-modal" data-target="consults-modal"></div>
+        <div class="modal-content modal-xl" role="dialog" aria-modal="true" aria-labelledby="consults-title">
+            <button class="modal-close" data-action="close-modal" data-target="consults-modal" aria-label="닫기">×</button>
+            <header class="modal-header">
+                <h3 id="consults-title" class="modal-title">접수된 상담 내역</h3>
+                <p class="modal-subtitle"><span id="consults-count">0</span>건</p>
+            </header>
+            <div id="consults-list" class="consults-list" aria-live="polite">
+                <div class="consults-empty">불러오는 중입니다.</div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="script.js"></script>
+</body>
+</html>
