@@ -803,3 +803,23 @@ document.addEventListener("click", (e) => {
             break;
     }
 })();
+/* ---------- Video Control ---------- */
+const videoElem = $("#main-video");
+const videoBtn = $("#video-control-btn");
+
+if (videoElem && videoBtn) {
+    videoBtn.addEventListener("click", () => {
+        if (videoElem.paused) {
+            // Play 누를 때: 시간을 0초(처음)로 되돌리고, 재생하고, 까만 화면 해제
+            videoElem.currentTime = 0;
+            videoElem.play();
+            videoElem.classList.remove("is-blacked-out");
+            videoBtn.textContent = "Pause";
+        } else {
+            // Pause 누를 때: 영상을 정지하고, 까만 화면 적용
+            videoElem.pause();
+            videoElem.classList.add("is-blacked-out");
+            videoBtn.textContent = "Play";
+        }
+    });
+}
